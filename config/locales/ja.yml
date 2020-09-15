@@ -1,0 +1,4 @@
+# Japanese strings go here for Rails i18n
+ja:
+  label_datetime: "日付時間"
+  
