@@ -13,7 +13,6 @@ Redmine::Plugin.register :redmine_datetime_custom_field do
 end
 
 Rails.application.config.to_prepare do
-  require_dependency 'datetime_custom_field_application_helper_patch'
   require_dependency 'datetime_custom_field_field_format_patch'
   require_dependency 'datetime_custom_field_custom_fields_helper_patch'
 
