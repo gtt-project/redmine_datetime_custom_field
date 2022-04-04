@@ -52,7 +52,7 @@ module DatetimeCustomFieldQueryPatch
       else
         ########################
         # Plugin : Custom format
-        time.strftime("%d/%m/%Y %H:%M")
+        time.strftime("%d/%m/%Y %H:%M:%S")
       end
     else
       self.class.connection.quoted_date(time)
@@ -79,7 +79,7 @@ module DatetimeCustomFieldQueryPatch
       ### Patch Start
       # Fix comparison for PostgreSQL
       if is_custom_filter && self.class.connection.kind_of?(ActiveRecord::ConnectionAdapters::PostgreSQLAdapter) && !Rails.env.test?
-        s << ("to_timestamp(#{table}.#{field},'DD/MM/YYYY HH24:MI') > to_timestamp('%s','DD/MM/YYYY HH24:MI')" % [quoted_time(from, is_custom_filter)])
+        s << ("to_timestamp(#{table}.#{field},'DD/MM/YYYY HH24:MI:SS') > to_timestamp('%s','DD/MM/YYYY HH24:MI:SS')" % [quoted_time(from, is_custom_filter)])
       else
         # Upstream version
         s << ("#{table}.#{field} > '%s'" % [quoted_time(from, is_custom_filter)])
@@ -99,7 +99,7 @@ module DatetimeCustomFieldQueryPatch
       ### Patch Start
       # Fix comparison for PostgreSQL
       if is_custom_filter && self.class.connection.kind_of?(ActiveRecord::ConnectionAdapters::PostgreSQLAdapter) && !Rails.env.test?
-        s << ("to_timestamp(#{table}.#{field},'DD/MM/YYYY HH24:MI') <= to_timestamp('%s','DD/MM/YYYY HH24:MI')" % [quoted_time(to, is_custom_filter)])
+        s << ("to_timestamp(#{table}.#{field},'DD/MM/YYYY HH24:MI:SS') <= to_timestamp('%s','DD/MM/YYYY HH24:MI:SS')" % [quoted_time(to, is_custom_filter)])
       else
         # Upstream version
         s << ("#{table}.#{field} <= '%s'" % [quoted_time(to, is_custom_filter)])

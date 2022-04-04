@@ -1,3 +1,8 @@
 # English strings go here for Rails i18n
 en:
   label_datetime: "DateTime"
+
+  activerecord:
+    errors:
+      messages:
+        not_a_datetime: "is not a valid datetime"
