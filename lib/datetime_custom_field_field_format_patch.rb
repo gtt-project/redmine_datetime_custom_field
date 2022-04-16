@@ -35,7 +35,7 @@ module Redmine
         # Compared to Date format :
         # - size 10 -> 15
         # - calendar_for -> datetime_for
-        view.datetime_local_field_tag(tag_name, custom_value.value, options.merge(:id => tag_id, :step => 1))
+        view.datetime_local_field_tag(tag_name, custom_value.value, options.merge(:id => tag_id, :step => 1, :value => format_datetime(custom_value.value)))
       end
 
       #############################
@@ -44,7 +44,7 @@ module Redmine
         # Compared to Date format :
         # - size 10 -> 15
         # - calendar_for -> datetime_for
-        view.datetime_local_field_tag(tag_name, value, options.merge(:id => tag_id, :step => 1)) +
+        view.datetime_local_field_tag(tag_name, value, options.merge(:id => tag_id, :step => 1, :value => format_datetime(custom_value.value))) +
           bulk_clear_tag(view, tag_id, tag_name, custom_field, value)
       end
 
